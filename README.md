@@ -9,6 +9,13 @@ type GitType struct {
 }
 ```
 
+## Installation
+
+```shell script
+go get -u -v github.com/supanadit/git-type
+```
+
+
 ## For Example :
 
 ### For SSH
