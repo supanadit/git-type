@@ -20,9 +20,6 @@ go get -u -v github.com/supanadit/git-type
 import "github.com/supanadit/git-type"
 ```
 
-
-## For Example :
-
 ### For SSH
 ```golang
 gitType, err := gittype.NewGitType("git@github.com:supanadit/devops-factory.git")
