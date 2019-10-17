@@ -15,6 +15,11 @@ type GitType struct {
 go get -u -v github.com/supanadit/git-type
 ```
 
+## How To Use
+```golang
+import "github.com/supanadit/git-type"
+```
+
 
 ## For Example :
 
