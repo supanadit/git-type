@@ -9,7 +9,7 @@ type GitType struct {
 }
 ```
 
-## Example :
+## For Example :
 
 ### For SSH
 ```golang
