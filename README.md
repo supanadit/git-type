@@ -1,5 +1,8 @@
 # Git Type
-Check Git URL is SSH, HTTPS or HTTP
+
+[![Go Report Card](https://goreportcard.com/badge/github.com/supanadit/git-type)](https://goreportcard.com/report/github.com/supanadit/git-type)
+
+Check Git URL protocol easily whether is SSH, HTTP or HTTPS
 
 ```golang
 type GitType struct {
