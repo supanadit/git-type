@@ -1,11 +1,12 @@
 # Git Type
 
+[![Build Status](https://travis-ci.com/supanadit/git-type.svg?branch=master)](https://travis-ci.com/supanadit/git-type)
 [![Go Report Card](https://goreportcard.com/badge/github.com/supanadit/git-type)](https://goreportcard.com/report/github.com/supanadit/git-type)
 
-Check Git URL protocol easily whether is SSH, HTTP or HTTPS
+Check Git URL protocol easily whether is SSH, HTTP or HTTPS with Zero Dependencies
 
 ```golang
-type GitType struct {
+type Type struct {
 	Url            string
 	Type           string
 	RepositoryName string
@@ -15,34 +16,34 @@ type GitType struct {
 ## Installation
 
 ```shell script
-go get -u -v github.com/supanadit/git-type
+go get -u -v github.com/supanadit/gity
 ```
 
 ## How To Use
 ```golang
-import "github.com/supanadit/git-type"
+import "github.com/supanadit/gity"
 ```
 
 ### For SSH
 ```golang
-gitType, err := gittype.NewGitType("git@github.com:supanadit/devops-factory.git")
+gity, err := gity.Check("git@github.com:supanadit/jwt-go.git")
 if err != nil {
     panic(err)
 }
-fmt.Println(gitType.IsHTTPORS()) // false
-fmt.Println(gitType.IsHTTP()) // false
-fmt.Println(gitType.IsHTTPS()) // false
-fmt.Println(gitType.IsSSH()) // true
+fmt.Println(gity.IsHTTPORS()) // false
+fmt.Println(gity.IsHTTP()) // false
+fmt.Println(gity.IsHTTPS()) // false
+fmt.Println(gity.IsSSH()) // true
 ```
 
 ### For HTTP / HTTPS
 ```golang
-gitType, err := gittype.NewGitType("https://github.com/supanadit/devops-factory.git")
+type, err := gity.Check("https://github.com/supanadit/jwt-go.git")
 if err != nil {
     panic(err)
 }
-fmt.Println(gitType.IsHTTPORS()) // true
-fmt.Println(gitType.IsHTTP()) // false
-fmt.Println(gitType.IsHTTPS()) // true
-fmt.Println(gitType.IsSSH()) // false
+fmt.Println(type.IsHTTPORS()) // true
+fmt.Println(type.IsHTTP()) // false
+fmt.Println(type.IsHTTPS()) // true
+fmt.Println(type.IsSSH()) // false
 ```

@@ -1,23 +1,28 @@
-package gittype
+package gity
 
 import (
 	"errors"
 	"strings"
 )
 
-var sshType string = "ssh"
-var httpType string = "http"
-var httpsType string = "https"
+// sshType is constant variable
+const sshType string = "ssh"
 
-type GitType struct {
+// httpType is constant variable
+const httpType string = "http"
+
+// httpsType is constant variable
+const httpsType string = "https"
+
+// Type is the default model provided by the library
+type Type struct {
 	Url            string
 	Type           string
 	RepositoryName string
 }
 
-func NewGitType(url string) (GitType, error) {
-	var gitType GitType
-	var err error = nil
+// Check is the function to check type of git
+func Check(url string) (t Type, err error) {
 	knownType := false
 
 	httpsProtocol := httpsType + "://"
@@ -28,12 +33,12 @@ func NewGitType(url string) (GitType, error) {
 		repositoryNameSplit := strings.Split(splitPath[len(splitPath)-1], ".")
 		if len(repositoryNameSplit) == 2 {
 			if repositoryNameSplit[1] == "git" {
-				gitType.Url = url
-				gitType.RepositoryName = repositoryNameSplit[0]
+				t.Url = url
+				t.RepositoryName = repositoryNameSplit[0]
 				if url[0:len(httpsProtocol)] == httpsProtocol {
-					gitType.Type = httpsType
+					t.Type = httpsType
 				} else {
-					gitType.Type = httpType
+					t.Type = httpType
 				}
 				knownType = true
 			}
@@ -49,9 +54,9 @@ func NewGitType(url string) (GitType, error) {
 					repositoryNameSplit := strings.Split(splitPath[len(splitPath)-1], ".")
 					if len(repositoryNameSplit) == 2 {
 						if repositoryNameSplit[1] == "git" {
-							gitType.Url = url
-							gitType.RepositoryName = repositoryNameSplit[0]
-							gitType.Type = sshType
+							t.Url = url
+							t.RepositoryName = repositoryNameSplit[0]
+							t.Type = sshType
 							knownType = true
 						}
 					}
@@ -63,10 +68,11 @@ func NewGitType(url string) (GitType, error) {
 	if !knownType {
 		err = errors.New("unknown URL type")
 	}
-	return gitType, err
+	return t, err
 }
 
-func (gitType GitType) IsHTTPS() bool {
+// IsHTTPS will return true if this url is type of HTTPS
+func (gitType Type) IsHTTPS() bool {
 	valid := false
 	if gitType.Type == httpsType {
 		valid = true
@@ -74,7 +80,8 @@ func (gitType GitType) IsHTTPS() bool {
 	return valid
 }
 
-func (gitType GitType) IsHTTP() bool {
+// IsHTTP will return true if this url is type of HTTP
+func (gitType Type) IsHTTP() bool {
 	valid := false
 	if gitType.Type == httpType {
 		valid = true
@@ -82,11 +89,13 @@ func (gitType GitType) IsHTTP() bool {
 	return valid
 }
 
-func (gitType GitType) IsHTTPORS() bool {
+// IsHTTPORS will return true if this url is type of HTTP or HTTPS
+func (gitType Type) IsHTTPORS() bool {
 	return gitType.IsHTTPS() || gitType.IsHTTP()
 }
 
-func (gitType GitType) IsSSH() bool {
+// IsSSH will return true if this url is type of SSH
+func (gitType Type) IsSSH() bool {
 	valid := false
 	if gitType.Type == sshType {
 		valid = true
