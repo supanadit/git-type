@@ -1,9 +1,9 @@
-# Git Type
+# Gity
 
 [![Build Status](https://travis-ci.com/supanadit/git-type.svg?branch=master)](https://travis-ci.com/supanadit/git-type)
 [![Go Report Card](https://goreportcard.com/badge/github.com/supanadit/git-type)](https://goreportcard.com/report/github.com/supanadit/git-type)
 
-Check Git URL protocol easily whether is SSH, HTTP or HTTPS with Zero Dependencies
+Check type of Git url protocol simply whether is SSH, HTTP or HTTPS with Zero Dependencies
 
 ```golang
 type Type struct {
