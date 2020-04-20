@@ -1,23 +1,16 @@
 language: go
-
-matrix:
-  fast_finish: true
-  include:
-    - go: 1.14.x
-    - go: master
-
-git:
-  depth: 10
-
-before_install:
-  - if [[ "${GO111MODULE}" = "on" ]]; then mkdir "${HOME}/go"; export GOPATH="${HOME}/go"; fi
-
+go:
+  - 1.14.x
+  - tip
+env:
+  - GO111MODULE=on
 install:
-  - if [[ "${GO111MODULE}" = "on" ]]; then go mod download; fi
-  - if [[ "${GO111MODULE}" = "on" ]]; then export PATH="${GOPATH}/bin:${GOROOT}/bin:${PATH}"; fi
-  - if [[ "${GO111MODULE}" = "on" ]]; then make tools; fi
-
-go_import_path: github.com/supanadit/git-type
-
+  - go get -v golang.org/x/lint/golint
+script:
+  - golint -set_exit_status ./...
+  - go test -race -coverprofile=coverage.txt -covermode=atomic ./...
 after_success:
   - bash <(curl -s https://codecov.io/bash)
+matrix:
+  allow_failures:
+    - go: tip

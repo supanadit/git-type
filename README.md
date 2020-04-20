@@ -7,7 +7,7 @@ Check type of Git url protocol simply whether is SSH, HTTP or HTTPS with Zero De
 
 ```golang
 type Type struct {
-	Url            string
+	Address        string
 	Type           string
 	RepositoryName string
 }

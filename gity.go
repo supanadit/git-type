@@ -16,7 +16,7 @@ const httpsType string = "https"
 
 // Type is the default model provided by the library
 type Type struct {
-	Url            string
+	Address        string
 	Type           string
 	RepositoryName string
 }
@@ -33,7 +33,7 @@ func Check(url string) (t Type, err error) {
 		repositoryNameSplit := strings.Split(splitPath[len(splitPath)-1], ".")
 		if len(repositoryNameSplit) == 2 {
 			if repositoryNameSplit[1] == "git" {
-				t.Url = url
+				t.Address = url
 				t.RepositoryName = repositoryNameSplit[0]
 				if url[0:len(httpsProtocol)] == httpsProtocol {
 					t.Type = httpsType
@@ -54,7 +54,7 @@ func Check(url string) (t Type, err error) {
 					repositoryNameSplit := strings.Split(splitPath[len(splitPath)-1], ".")
 					if len(repositoryNameSplit) == 2 {
 						if repositoryNameSplit[1] == "git" {
-							t.Url = url
+							t.Address = url
 							t.RepositoryName = repositoryNameSplit[0]
 							t.Type = sshType
 							knownType = true
