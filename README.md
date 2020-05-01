@@ -2,6 +2,7 @@
 
 [![Build Status](https://travis-ci.com/supanadit/gity.svg?branch=master)](https://travis-ci.com/supanadit/gity)
 [![Go Report Card](https://goreportcard.com/badge/github.com/supanadit/git-type)](https://goreportcard.com/report/github.com/supanadit/git-type)
+[![GoDoc](https://godoc.org/github.com/supanadit/gity?status.svg)](https://godoc.org/github.com/supanadit/gity)
 
 Check type of Git url protocol simply whether is SSH, HTTP or HTTPS with Zero Dependencies
 
